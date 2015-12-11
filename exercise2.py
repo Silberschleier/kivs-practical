@@ -2,6 +2,13 @@ import re
 import numpy
 import statistics
 import matplotlib.pyplot as plt
+import argparse
+
+parser = argparse.ArgumentParser(description='bla')
+parser.add_argument('--low', type=int, default=0)
+parser.add_argument('--high', type=int, default=10000000000000000)
+args = parser.parse_args()
+
 ping_data = []
 timestamp_data = []
 sections = []
@@ -10,8 +17,8 @@ timestamp = 0
 c = 500000
 i = 0
 
-timeframeLow = 1411025762
-timeframeHigh = 1445589362
+timeframeLow = args.low
+timeframeHigh = args.high
 
 contents = ""
 f = open('PA.log', 'r')
@@ -32,7 +39,6 @@ for line in f:
             i += 1
 
 for s in range(1, len(sections)):
-    print timestamp_data[sections[s]]
     if (s) > len(sections):
         boxplot_data.append(ping_data[sections[s]:])
     else:
