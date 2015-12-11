@@ -10,6 +10,9 @@ timestamp = 0
 c = 500000
 i = 0
 
+timeframeLow = 1411025762
+timeframeHigh = 1445589362
+
 contents = ""
 f = open('PA.log', 'r')
 
@@ -22,23 +25,31 @@ for line in f:
         timestamp = int(line)
     m = p.findall(line)
     if m:
-        timestamp += 1
-        timestamp_data.append(timestamp)
-        ping_data.append(float(m[0]))
-        i += 1
+        if timestamp > timeframeLow and timestamp < timeframeHigh:
+            timestamp += 1
+            timestamp_data.append(timestamp)
+            ping_data.append(float(m[0]))
+            i += 1
 
-for s in range(1, len(sections)-1):
-    if (s+1) > len(sections)-1:
+for s in range(1, len(sections)):
+    print timestamp_data[sections[s]]
+    if (s) > len(sections):
         boxplot_data.append(ping_data[sections[s]:])
     else:
         boxplot_data.append(ping_data[sections[s-1]:sections[s]])
-
 print "Minimum: ", min(ping_data)
 print "Maximum: ", max(ping_data)
 print "Mean: ", numpy.mean(ping_data)
 print "Deviation: ", statistics.stdev(ping_data)
 
-#plt.plot(timestamp_data, ping_data, 'bs')
+print len(ping_data)
+
+print sections
+
+#print boxplot_data[2]
+
+
+plt.plot(timestamp_data, ping_data, 'bs')
 #plt.boxplot(boxplot_data)
-plt.plot(boxplot_data[2])
+#plt.plot(boxplot_data[1])
 plt.show()
