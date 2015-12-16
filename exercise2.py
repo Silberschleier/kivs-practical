@@ -56,6 +56,8 @@ print sections
 
 
 plt.plot(timestamp_data, ping_data, 'bs')
-#plt.boxplot(boxplot_data)
-#plt.plot(boxplot_data[1])
-plt.show()
+plt.savefig("timestamp_data.png")
+plt.boxplot(boxplot_data)
+plt.savefig("boxplot_data.png")
+plt.plot(boxplot_data[1])
+plt.savefig("pingnr_data.png")
