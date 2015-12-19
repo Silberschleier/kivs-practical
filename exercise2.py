@@ -51,7 +51,10 @@ print "Sections: ", sections
 
 plt.plot(timestamp_data, ping_data, 'bs')
 plt.savefig("timestamp_data.png")
+plt.close()
 plt.boxplot(boxplot_data)
 plt.savefig("boxplot_data.png")
-plt.plot(boxplot_data[1])
+plt.close()
+plt.plot(ping_data)
 plt.savefig("pingnr_data.png")
+plt.close()

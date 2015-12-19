@@ -8,7 +8,7 @@ sum = 0
 i = 0
 length = 1000
 
-while True:                                 #Einlesen von stdin in Blöcken der Länge length Bytes
+while True:                                 #Einlesen von stdin in Bloecken der Laenge length Bytes
     before = time.time()
     data = sys.stdin.read(length)
     seconds.append(time.time() - before)
@@ -24,6 +24,7 @@ for s in seconds:                           #Umrechnen von Sekunden pro Bytes in
 
 plt.plot(seconds)
 plt.savefig("seconds.png")
+plt.close()
 plt.plot(datarate)
-plt.show()
 plt.savefig("datarate.png")
+plt.close()
