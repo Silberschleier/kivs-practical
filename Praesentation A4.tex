@@ -9,11 +9,13 @@
 \usepackage[utf8]{inputenc}
 \usepackage{amsmath,amsfonts,amssymb}
 \usepackage{graphicx}
+\usepackage{svg}
+\usepackage{listings}
 
 \title[Aufgabe 4]{Aufgabe 4 des praktischen Übungsblatts}
 \author[Schmidt, Pielka]{Christopher Schmidt, Maren Pielka}
 \institute[Uni Bonn]{Universität Bonn}
-\date[13.01.15]{13. Januar 2016}
+\date[13.01.16]{13. Januar 2016}
 
 \begin{document}
 
@@ -21,12 +23,16 @@
 \titlepage
 \end{frame}
 
-\begin{frame}
+\begin{frame}[containsverbatim]
 \frametitle{Measurement setup}
 \begin{itemize}
 \item Durchführung aller Messungen auf Rechnern im CIP-Pool
-\item wget zum Herunterladen der Dateien, Auswertung und Plot mit Python-Skript
-\item Download von "linux-3.9.2.tar.xz" (68 MB) zum Testen 
+\item \textit{wget} zum Herunterladen der Dateien, Auswertung und Plot mit Python-Skript
+\lstset{language=sh,basicstyle=\footnotesize}
+\begin{lstlisting}
+$ wget -O - [...] | python exercise4v2.py
+\end{lstlisting}
+\item Download von "linux-3.9.2.tar.xz" (ca. 68 MB) zum Testen 
 \end{itemize}
 \end{frame}
 
@@ -35,10 +41,19 @@
 \begin{itemize}
 \item Drosselung zu Beginn des Downloads
 \end{itemize}
+
 \begin{figure}
 \centering
-\includegraphics[width=0.5\textwidth]{seconds_http.png}
-\caption{Zeit in Sekunden für je 1000 Byte}
+\begin{minipage}[t]{0.4\linewidth}
+			\centering
+			\includegraphics[width=\linewidth]{images/seconds_http.pdf}
+			\caption{Zeit in Sekunden für je 1 KByte}
+\end{minipage}
+\begin{minipage}[t]{0.4\linewidth}
+			\centering
+			\includegraphics[width=\linewidth]{images/datarate_http.pdf}
+			\caption{KByte pro Sekunde}
+\end{minipage}
 \end{figure}
 \end{frame}
 
@@ -49,8 +64,16 @@
 \end{itemize}
 \begin{figure}
 \centering
-\includegraphics[width=0.5\textwidth]{seconds_ftp.png}
-\caption{Zeit in Sekunden für je 1000 Byte}
+\begin{minipage}[t]{0.4\linewidth}
+			\centering
+			\includegraphics[width=\linewidth]{images/seconds_ftp.pdf}
+			\caption{Zeit in Sekunden für je 1 KByte}
+\end{minipage}
+\begin{minipage}[t]{0.4\linewidth}
+			\centering
+			\includegraphics[width=\linewidth]{images/datarate_ftp.pdf}
+			\caption{KByte pro Sekunde}
+\end{minipage}
 \end{figure}
 \end{frame}
 
