@@ -48,7 +48,9 @@ print "Maximum: ", max(ping_data)
 print "Mean: ", statistics.mean(ping_data)
 print "Deviation: ", statistics.stdev(ping_data)
 
-print "Sections: ", sections
+print "Sections:",
+for s in sections:
+    print timestamp_data[s],
 
 plt.plot(timestamp_data, ping_data, 'bs')
 plt.savefig("timestamp_data.png")
