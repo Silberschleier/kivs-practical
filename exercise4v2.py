@@ -6,7 +6,7 @@ seconds = []
 datarate = []
 time_sum = 0
 i = 0
-length = 1000
+length = 1024
 
 while True:                                 #Einlesen von stdin in Bloecken der Laenge length Bytes
     before = time.time()
