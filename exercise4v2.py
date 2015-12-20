@@ -23,8 +23,8 @@ for s in seconds:                           #Umrechnen von Sekunden pro Bytes in
         i = 0
 
 plt.plot(seconds)
-plt.savefig("seconds.png")
+plt.savefig("seconds.svg")
 plt.close()
 plt.plot(datarate)
-plt.savefig("datarate.png")
+plt.savefig("datarate.svg")
 plt.close()
