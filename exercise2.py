@@ -2,10 +2,18 @@ import re
 import statistics
 import matplotlib.pyplot as plt
 import argparse
+import datetime
+import time
 
-parser = argparse.ArgumentParser(description='aufgabe2')
-parser.add_argument('--low', type=int, default=0)
-parser.add_argument('--high', type=int, default=10000000000000000)
+
+def valid_date(string):
+    if s == '':
+        return time.time()
+    return time.mktime(datetime.datetime.strptime(string, "%Y-%m-%d").timetuple())
+
+parser = argparse.ArgumentParser(description='Aufgabe 2')
+parser.add_argument('--low', type=valid_date, default='1970-01-01', help='YYYY-MM-DD')
+parser.add_argument('--high', type=valid_date, default='', help='YYYY-MM-DD')
 args = parser.parse_args()
 
 ping_data = []
