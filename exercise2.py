@@ -52,12 +52,19 @@ print "Sections:",
 for s in sections:
     print timestamp_data[s],
 
-plt.plot(timestamp_data, ping_data, 'bs')
+plt.plot(timestamp_data, ping_data, 'x')
+plt.xlabel("Time")
+plt.ylabel("RTT")
 plt.savefig("timestamp_data.png")
 plt.close()
+
 plt.boxplot(boxplot_data)
+plt.ylabel("RTT")
 plt.savefig("boxplot_data.png")
 plt.close()
+
 plt.plot(ping_data)
+plt.xlabel("Seq.No.")
+plt.ylabel("RTT")
 plt.savefig("pingnr_data.png")
 plt.close()
