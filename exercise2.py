@@ -21,7 +21,7 @@ timestamp_data = []
 sections = []
 boxplot_data = []
 timestamp = 0
-c = 500000                      #Minimaler Abstand zweier Segmente
+c = 5000000                      #Minimaler Abstand zweier Segmente (ca. 2 Monate)
 i = 0
 
 timeframeLow = args.low         #Zeitfenster, das betrachtet werden soll
@@ -45,11 +45,14 @@ for line in f:
             ping_data.append(float(m[0]))
             i += 1
 
-for s in range(1, len(sections)):                               # Daten fuer Boxplots aus Segmenten kopieren
-    if s > len(sections):
+
+# Daten fuer Boxplots aus Segmenten kopieren
+for s in range(0, len(sections)):
+    if s >= len(sections)-1:
         boxplot_data.append(ping_data[sections[s]:])
     else:
-        boxplot_data.append(ping_data[sections[s-1]:sections[s]])
+        boxplot_data.append(ping_data[sections[s]:sections[s+1]])
+
 
 print "Minimum: ", min(ping_data)
 print "Maximum: ", max(ping_data)
@@ -60,9 +63,11 @@ print "Sections:",
 for s in sections:
     print timestamp_data[s],
 
-plt.plot(timestamp_data, ping_data, 'x')
+plt.plot(timestamp_data, ping_data, '.')
 plt.xlabel("Time")
 plt.ylabel("RTT")
+for s in sections:
+    plt.axvline(timestamp_data[s], color='r', linestyle='--')
 plt.savefig("timestamp_data.png")
 plt.close()
 
