@@ -1,0 +1,72 @@
+%Dokumentenklasse, andere Beispiele: Statt llncs "`article"' "`report"', "`book"'...
+%Achtung llncs benötigt die Datei llncs.cls im gleichen Ordner
+\documentclass[runningheads]{article}
+
+%sorgt für deutsche Übersetzungen, z.B. "`Literatur"' statt "`References"'
+\usepackage[ngerman]{babel}
+\usepackage[utf8]{inputenc}
+%Ermöglicht das Einbinden von Bildern
+\usepackage{graphicx}
+%Darstellung von URLs
+\usepackage{url}
+\usepackage{listings}
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amstext}
+
+
+\begin{document}
+
+%Benötigte Angaben für die Titelseite
+\title{Manual zu Aufgabe 2 des praktischen Übungsblatts}
+%Hier Zeilenumbruch durch \\, da \newline in dieser Umgebung nicht funktioniert.
+\author{Christopher Schmidt, Maren Pielka}
+
+
+%Erstellung des Titels
+\maketitle
+
+\section{Anforderungen}
+\begin{itemize}
+\item Python 2.6
+\item Python-Pakete:
+\begin{itemize}
+\item Statistics
+\item Matplotlib
+\item Argparse
+\end{itemize}
+Die Python-Pakete lassen sich mit folgendem Befehl installieren:
+\begin{lstlisting} 
+pip install statistics matplotlib argparse
+\end{lstlisting}
+\end{itemize}
+
+\section{Bedienung}
+\begin{itemize}
+\item Das Programm wird über die Konsole mit folgender Eingabe aufgerufen: \\
+\begin{lstlisting}
+./execute_exercise2.sh
+\end{lstlisting}
+\item Parameter, um den Zeitraum einzugrenzen:
+\begin{lstlisting}
+./execute_exercise2.sh --low YYYY-MM-DD --high YYYY-MM-DD
+\end{lstlisting}
+z.B:
+\begin{lstlisting}
+./execute_exercise2.sh --low 2011-01-01 --high 2014-12-31
+\end{lstlisting}
+\item Beispielausgabe:
+\begin{lstlisting}
+Minimum:  3.544
+Maximum:  82.85
+Mean:  15.5133651461
+Deviation:  5.52623789293
+Sections: 1378899362 1392371162 1411025762 1421048162 1445589362
+\end{lstlisting}
+\end{itemize}
+
+
+
+\end{document}
