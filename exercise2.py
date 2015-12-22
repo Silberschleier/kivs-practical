@@ -14,6 +14,7 @@ def valid_date(string):
 parser = argparse.ArgumentParser(description='Aufgabe 2')
 parser.add_argument('--low', type=valid_date, default='1970-01-01', help='YYYY-MM-DD')
 parser.add_argument('--high', type=valid_date, default='', help='YYYY-MM-DD')
+parser.add_argument('--segthresh', type=int, default=5000000, help='Zeit in Sekunden')
 args = parser.parse_args()
 
 ping_data = []
@@ -21,7 +22,7 @@ timestamp_data = []
 sections = []
 boxplot_data = []
 timestamp = 0
-c = 5000000                      #Minimaler Abstand zweier Segmente (ca. 2 Monate)
+c = args.segthresh                      #Minimaler Abstand zweier Segmente (default ca. 2 Monate)
 i = 0
 
 timeframeLow = args.low         #Zeitfenster, das betrachtet werden soll
@@ -79,5 +80,7 @@ plt.close()
 plt.plot(ping_data)
 plt.xlabel("Seq.No.")
 plt.ylabel("RTT")
+for s in sections:
+    plt.axvline(s, color='r', linestyle='--')
 plt.savefig("pingnr_data.png")
 plt.close()
