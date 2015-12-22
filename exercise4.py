@@ -18,13 +18,20 @@ for s in seconds:                           #Umrechnen von Sekunden pro Bytes in
     time_sum += s
     i += 1
     if time_sum >= 1:
-        datarate.append(length*i)
+        datarate.append(i)
         time_sum = 0
         i = 0
 
+plt.style.use("bmh")
+
 plt.plot(seconds)
-plt.savefig("seconds.png")
+plt.ylabel("Seconds")
+plt.xlabel("KBytes")
+plt.savefig("seconds.pdf")
 plt.close()
+
 plt.plot(datarate)
-plt.savefig("datarate.png")
+plt.ylabel("KB/s")
+plt.xlabel("Seconds")
+plt.savefig("datarate.pdf")
 plt.close()
