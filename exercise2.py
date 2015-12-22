@@ -7,7 +7,7 @@ import time
 
 
 def valid_date(string):
-    if s == '':
+    if string == '':
         return time.time()
     return time.mktime(datetime.datetime.strptime(string, "%Y-%m-%d").timetuple())
 
