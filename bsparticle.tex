@@ -1,0 +1,115 @@
+%Dokumentenklasse, andere Beispiele: Statt llncs "`article"' "`report"', "`book"'...
+%Achtung llncs benötigt die Datei llncs.cls im gleichen Ordner
+\documentclass[runningheads]{llncs}
+
+%sorgt für deutsche Übersetzungen, z.B. "`Literatur"' statt "`References"'
+\usepackage{ngerman}
+%Ermöglicht das Einbinden von Bildern
+\usepackage{graphicx}
+%Darstellung deutscher Sonderzeichen (Umlaute etc)
+\usepackage[ansinew]{inputenc}
+%Darstellung von URLs
+\usepackage{url}
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amstext}
+
+%Spezielle Einbindung einer URL zur Angabe in der caption
+\urldef \urlSchnab \url{http://upload.wikimedia.org/wikipedia/commons/f/f2/Platypus.jpg}
+
+\begin{document}
+
+%Benötigte Angaben für die Titelseite
+\title{Insert\_Title\_Here}
+%Hier Zeilenumbruch durch \\, da \newline in dieser Umgebung nicht funktioniert.
+\author{Insert\_Name\_Here \\ Matrikel-Nr: NaN}
+%Hier das Institut angeben
+\institute{Schnabeltier Universität}
+
+%Erstellung des Titels
+\maketitle
+
+\begin{abstract}
+Sehr kurze Zusammenfassung (1-3 Sätze) des Textes in welchen Aufgabe, vorgehensweise und Ergebnis vorgestellt werden.
+\end{abstract}
+
+\section{Einleitung}
+Hier wird eine Einleitung platziert
+
+%Erster Abschnitt, in geschweiften Klammern Titel des ersten Abschnittes
+\section{Erster Abschnitt}
+
+Hier wird der eigene Text eingefügt, der in den ersten Abschnitt passt.
+
+%Erster Unterabschnitt des Ersten Abschnittes
+\subsection{Erster Unterabschnitt}
+
+Der Inhalt diesen Satzes stammt aus Quelle 1, daher müssen wir auf sie referenzieren. [1] \newline
+Ein Unterabschnitt ist definiert als kleinerer Abschnitt in einem größeren. [2]
+
+%Einbinden eines Bildes
+%In eckigen Klammern: Platzierung, h = "`here"', b = "`bottom"', t = "`top"'
+\begin{figure}[ht]
+	%zentrieren
+	\centering
+	%Abgabe des Pfads des Bildes, in eckigen Klammern die gewünschte Größe
+	\includegraphics[width=7cm]{Schnabeltier.jpg}
+	%Bildunterschrift
+	\caption{Schnabeltier, Quelle: \urlSchnab{}}
+	%Zur Referenzierung auf das Bild benötigt
+	\label{fig:Schnab}
+\end{figure}
+
+%Verhindert Einrückung des Absatzes
+\noindent
+Der wissenschaftliche Name des Schnabeltiers lautet "`Ornithorhynchus anatinus"'. Während das Schnabeltier-Männchen eine Kopf-Rumpf-Länge von 40-60 cm aufweist, ist das Weibchen mit 39-55 cm kleiner. [3] \newline
+Der Name "`Schnabeltier"' geht auf den Schnabel zurück, der Ähnlichkeiten mit dem einer Ente aufweist. Dabei haben erwachsene Schnabeltiere statt Zähnen Hornplatten an Ober- und Unterkiefern, mit denen sie in der Lage sind, Nahrung zu zermahlen. Die Jungen besitzen bei der Geburt noch Backenzähne, diese verlieren sie allerdings während ihrer Entwicklung. \cite{4} \newline
+Das ungewöhnliche Aussehen des Schnabeltiers spiegelt sich auch in folgender Aussage wieder: "`A disbeliever in anything beyond his own reason, might exclaim: Surely two distinct creators must have been at work."' Charles Darwin. [4]
+
+%Verhindert Einrückung des Absatzes
+\noindent
+%Über \ref wird auf das mit \label markierte Objekt referenziert (kann auch section, table etc. sein)
+% ! Achtung, bei Verwendung von \ref o.ä. kann mehrmaliges kompilieren nötig werden!
+In Abbildung \ref{fig:Schnab} sieht man ein solches Schnabeltier.
+
+\section{Zweiter Abschnitt}
+
+Hier geht es um die Normalverteilung, die durch Formel \ref{eq} beschrieben wird.
+
+% Umgebung für eine Gleichung
+\begin{equation*}
+	\mathcal{N}(x | \mu, \sigma) = \frac{1}{\sigma \sqrt{2 \pi}} \cdot \mbox{exp}\left( - \frac{1}{2} \left(\frac{x - \mu }{\sigma}\right) \right)
+	\label{eq}
+\end{equation*} 
+
+\noindent
+% $ beginnt eine mathematische Umgebung im Text. Unbedingt wieder mit $ schließen!
+Darin bezeichnet $x$ die Zufallsvariable, $\mu$ den Erwartungswert und $\sigma$ die Standardabweichung. Außerdem können wir auch eine mathematische Umgebung im Text benutzen: $\sum_{i=0}^{42} i = 903$.
+
+\section{Schlusswort}
+hier wird ein Schlusswort oder eine Zusammenfassung eingefügt
+
+%Literaturverzeichnis mit 4 Einträgen
+\begin{thebibliography}{4}
+
+%Erster Literatureintrag
+\bibitem[1]{1}
+Autor Autoris, La TexUser, "`Titel der Quelle aus der zitiert werden soll"' in \textit{Tagungsband der großen internationalen Konferenz}, 2020.
+
+%Zweiter Literatureintrag
+\bibitem[2]{2}
+Duden, \url{http://www.duden.de/rechtschreibung/Unterabschnitt}, abgerufen am 7.10.2012.
+
+%Dritter Literatureintrag
+\bibitem[3]{3}
+Tierlexikon, \url{http://www.das-tierlexikon.de/schnabeltier-245-pictures.htm}, abgerufen am 7.10.2012.
+
+%Vierter Literatureintrag
+\bibitem[4]{4}
+Wikipedia, \url{http://de.wikipedia.org/wiki/Schnabeltier}, abgerufen am 7.10.2012.
+
+\end{thebibliography}
+
+\end{document}
