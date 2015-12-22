@@ -45,11 +45,11 @@ $ wget -O - [...] | python exercise4.py
 
 \begin{figure}
 \centering
-\begin{minipage}[t]{0.4\linewidth}
+\begin{minipage}[t]{0.49\linewidth}
 			\centering
 			\includegraphics[width=\linewidth]{images/seconds_http.pdf}
 \end{minipage}
-\begin{minipage}[t]{0.4\linewidth}
+\begin{minipage}[t]{0.49\linewidth}
 			\centering
 			\includegraphics[width=\linewidth]{images/datarate_http.pdf}
 \end{minipage}
@@ -59,19 +59,39 @@ $ wget -O - [...] | python exercise4.py
 \begin{frame}
 \frametitle{FTP Server Ergebnisse}
 \begin{itemize}
-\item Drosselung am Ende des Downloads
+\item Drosselung am Ende des Downloads auf 100Kb/s
 \item Abhängig von der Dateigröße (bei ca. 50Mb)
 \end{itemize}
 \begin{figure}
 \centering
-\begin{minipage}[t]{0.4\linewidth}
+\begin{minipage}[t]{0.49\linewidth}
 			\centering
-			\includegraphics[width=\linewidth]{images/seconds_ftp_unthrottled.pdf}
+			\includegraphics[width=\linewidth]{images/seconds_ftp_cip-unthrottled.pdf}
 			\caption{Ungedrosselt}
 \end{minipage}
-\begin{minipage}[t]{0.4\linewidth}
+\begin{minipage}[t]{0.49\linewidth}
 			\centering
-			\includegraphics[width=\linewidth]{images/seconds_ftp_2.pdf}
+			\includegraphics[width=\linewidth]{images/seconds_ftp_cip-throttled.pdf}
+			\caption{Manuell gedrosselt}
+\end{minipage}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+\frametitle{FTP Server Ergebnisse}
+\begin{itemize}
+\item Beginn der Drosselung unabhängig von der Zeit
+\end{itemize}
+\begin{figure}
+\centering
+\begin{minipage}[t]{0.49\linewidth}
+			\centering
+			\includegraphics[width=\linewidth]{images/datarate_ftp_cip-unthrottled.pdf}
+			\caption{Ungedrosselt}
+\end{minipage}
+\begin{minipage}[t]{0.49\linewidth}
+			\centering
+			\includegraphics[width=\linewidth]{images/datarate_ftp_cip-throttled.pdf}
 			\caption{Manuell gedrosselt}
 \end{minipage}
 \end{figure}
