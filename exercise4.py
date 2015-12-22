@@ -1,6 +1,9 @@
+import matplotlib
+matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 import sys
 import time
+
 
 seconds = []
 datarate = []
@@ -22,7 +25,6 @@ for s in seconds:                           #Umrechnen von Sekunden pro Bytes in
         time_sum = 0
         i = 0
 
-plt.style.use("bmh")
 
 plt.plot(seconds)
 plt.ylabel("Seconds")
