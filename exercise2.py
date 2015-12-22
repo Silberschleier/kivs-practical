@@ -22,36 +22,42 @@ timeframeHigh = args.high
 contents = ""
 f = open('PA.log', 'r')
 
-t = re.compile('\d+\n')                 #Einlesen des Zeitstempels
-p = re.compile('time=(\d+\.\d+)')       #Einlesen der Roundtriptime
+t = re.compile('\d+\n')                 # Einlesen des Zeitstempels
+p = re.compile('time=(\d+\.\d+)')       # Einlesen der Roundtriptime
 for line in f:
-    if t.match(line) is not None:       #Erkennung von Zeitstempeln
+    if t.match(line) is not None:       # Erkennung von Zeitstempeln
         if int(line) > timestamp + c:
             sections.append(i)
         timestamp = int(line)
     m = p.findall(line)
     if m:
-        if timestamp > timeframeLow and timestamp < timeframeHigh:
+        if timeframeLow < timestamp < timeframeHigh:
             timestamp += 1
             timestamp_data.append(timestamp)
             ping_data.append(float(m[0]))
             i += 1
 
-for s in range(1, len(sections)):                                #Auswertung der Pingdaten
-    if (s) > len(sections):
+for s in range(1, len(sections)):                               # Daten fuer Boxplots aus Segmenten kopieren
+    if s > len(sections):
         boxplot_data.append(ping_data[sections[s]:])
     else:
         boxplot_data.append(ping_data[sections[s-1]:sections[s]])
+
 print "Minimum: ", min(ping_data)
 print "Maximum: ", max(ping_data)
 print "Mean: ", statistics.mean(ping_data)
 print "Deviation: ", statistics.stdev(ping_data)
 
-print "Sections: ", sections
+print "Sections:",
+for s in sections:
+    print timestamp_data[s],
 
 plt.plot(timestamp_data, ping_data, 'bs')
 plt.savefig("timestamp_data.png")
+plt.close()
 plt.boxplot(boxplot_data)
 plt.savefig("boxplot_data.png")
-plt.plot(boxplot_data[1])
+plt.close()
+plt.plot(ping_data)
 plt.savefig("pingnr_data.png")
+plt.close()
