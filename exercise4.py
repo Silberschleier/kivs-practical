@@ -22,6 +22,8 @@ for s in seconds:                           #Umrechnen von Sekunden pro Bytes in
         time_sum = 0
         i = 0
 
+plt.style.use("bmh")
+
 plt.plot(seconds)
 plt.ylabel("Seconds")
 plt.xlabel("KBytes")
