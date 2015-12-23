@@ -31,11 +31,13 @@ timeframeHigh = args.high
 contents = ""
 f = open('PA.log', 'r')
 
-t = re.compile('\d+\n')                 # Einlesen des Zeitstempels
-p = re.compile('time=(\d+\.\d+)')       # Einlesen der Roundtriptime
+t = re.compile('\d+\n')                 # Erkennung des Zeitstempels
+p = re.compile('time=(\d+\.\d+)')       # Erkennung der Roundtriptime
 for line in f:
-    if t.match(line) is not None:       # Erkennung von Zeitstempeln
-        if int(line) > timestamp + c:
+    if t.match(line) is not None:       # Einlesen von Zeitstempeln
+        if timestamp >= timeframeHigh:
+            break
+        if int(line) > timestamp + c:   # Sections erkennen
             sections.append(i)
         timestamp = int(line)
     m = p.findall(line)
@@ -48,11 +50,14 @@ for line in f:
 
 
 # Daten fuer Boxplots aus Segmenten kopieren
-for s in range(0, len(sections)):
-    if s >= len(sections)-1:
-        boxplot_data.append(ping_data[sections[s]:])
-    else:
-        boxplot_data.append(ping_data[sections[s]:sections[s+1]])
+if len(sections) > 1:
+    for s in range(0, len(sections)):
+        if s >= len(sections)-1:
+            boxplot_data.append(ping_data[sections[s]:])
+        else:
+            boxplot_data.append(ping_data[sections[s]:sections[s+1]])
+else:
+    boxplot_data.append(ping_data)
 
 
 print "Minimum: ", min(ping_data)
@@ -60,15 +65,13 @@ print "Maximum: ", max(ping_data)
 print "Mean: ", statistics.mean(ping_data)
 print "Deviation: ", statistics.stdev(ping_data)
 
-print "Sections:",
-for s in sections:
-    print timestamp_data[s],
 
 plt.plot(timestamp_data, ping_data, '.')
 plt.xlabel("Time")
 plt.ylabel("RTT")
 for s in sections:
-    plt.axvline(timestamp_data[s], color='r', linestyle='--')
+    if len(timestamp_data) > s:
+        plt.axvline(timestamp_data[s], color='r', linestyle='--')
 plt.savefig("timestamp_data.png")
 plt.close()
 
